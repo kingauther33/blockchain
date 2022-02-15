@@ -1,0 +1,80 @@
+Transaction
+https://etherscan.io/tx/0xe0cef16ffd8e491579f0c09fd007ceac0dae2c8d85caf0730d1ab13c9d2f5fdc
+
+
+
+
+web3.js: is a collection of libs that allow you to interact with a local
+or remote ehtereum node.
+
+blockchain link
+https://andersbrownworth.com/blockchain/blockchain
+
+0x6080604052348015600f57600080fd5b50604580601d6000396000f3fe
+
+Use ethereum yellow paper to understand the instruction
+https://ethereum.github.io/yellowpaper/paper.pdf
+60 80 60 40 52 34 80 15 60 0f 57 60 00 80 fd 5b 50 60 45 80 60 1d 60 00 39 60 00 f3 fe
+0  1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28
+                                             JUMPED HERE(15)
+
+
+60: push 1 bytes to STACK
+60 80: push 0x80 to STACK
+60 40: push 0x60 to STACK
+52: save 0x80 to 0x40 => remove from STACK
+34: get value sent from the transaction (0x00)
+80: duplicate the 1st STACK item (currently is 0x00)
+15: check if the 1st item if 0, if it is 0 => u[0] = 1, else u[0] = 0
+60 0f: push 0f to STACK
+57: JUMPI: if STACK[1] == 1 -> jump STACK[0] and remove 2 items
+50: POP 1 item from STACK
+39: Code COPY
+  - STACK[0] = memory offset to write
+  - STACK[1] = Bytecode offset to read from
+  - STACK[2] = length of bytecode to copy
+  0x00: Write to memory position 0
+  0x1d: 29 bytes offset
+f3: execute code at STACK[0] memory offset and with STACK[1] length of bytes
+  - 0x00: MEMORY at 0x00
+  - 0x45: 69 bytes length (138 characters)
+
+60 80 60 40 52 34 80 15 60 0f 57 60 00 80 fd 5b 50 60 45 80 60 1d 60 00 39 60 00 f3 fe
+0  1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28
+
+// STACK
+
+// MEMORY
+
+Memory[0x40] = 0x80 // Free memory pointer
+Memory[0x00] = code to copy
+
+
+
+
+// how is Block Header Calculated
+RLP (“recursive length prefix”) encoding is the main serialization format used in Ethereum,
+and is used everywhere - for blocks, transactions, account state data and
+wire protocol messages.
+
+How header is encoded
+https://ethereum.stackexchange.com/questions/67280/block-header-hash-calculation
+
+Encoder
+https://toolkit.abdk.consulting/ethereum#rlp
+
+About RLP encoding
+https://medium.com/coinmonks/data-structure-in-ethereum-episode-1-recursive-length-prefix-rlp-encoding-decoding-d1016832f919
+
+Etherem Live view
+http://ethviewer.live/
+
+
+bits, bytes, words
+https://www.youtube.com/watch?v=Weyv-V8xz0c
+
+EVMs, and Bytecode
+https://www.youtube.com/watch?v=RxL_1AfV7N4
+
+Memory in computer:
+https://www.youtube.com/watch?v=F0Ri2TpRBBg

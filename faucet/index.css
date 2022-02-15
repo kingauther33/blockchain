@@ -1,0 +1,29 @@
+@media screen and (min-width: 1000px) {
+	.cards {
+		min-height: 100vh;
+		grid-template-columns: repeat(1fr, 5);
+		grid-template-rows: repeat(1fr, 6);
+	}
+	.card-one {
+		grid-column: 1 / 2;
+		grid-row: 1 / 4;
+	}
+	.card-two {
+		grid-column: 2 / 4;
+		grid-column: 3 / 7;
+	}
+	.card-three {
+		grid-column: 5 / 6;
+		grid-row: 2 / 4;
+	}
+}
+
+@media screen and (min-width: 300px) and (max-width: 999px) {
+	.cards {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.card-one {
+	}
+}

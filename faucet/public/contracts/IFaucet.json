@@ -31,7 +31,7 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "// SPDX-License-Identifier: MIT\r\npragma solidity >=0.4.22 <0.9.0;\r\n\r\n// they cannot inherit from another SCs\r\n// they can only inherit from other interfaces\r\n\r\n// they cannot declare a constructor\r\n// they cannot declare state variables\r\n// all declared function have to be external\r\n\r\ninterface IFaucet {\r\n    function addFunds() external payable;\r\n\r\n    function withdraw(uint256 withdrawAmount) external;\r\n}\r\n",
-  "sourcePath": "D:\\An Dinh\\_TRAINING\\blockchain\\faucet\\contracts\\IFaucet.sol",
+  "sourcePath": "D:\\An_Dinh\\_training\\blockchain\\faucet\\contracts\\IFaucet.sol",
   "ast": {
     "absolutePath": "project:/contracts/IFaucet.sol",
     "exportedSymbols": {
@@ -297,8 +297,8 @@
     "version": "0.8.11+commit.d7f03943.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.4.4",
-  "updatedAt": "2022-02-12T07:01:27.814Z",
+  "schemaVersion": "3.4.5",
+  "updatedAt": "2022-02-25T08:09:26.957Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

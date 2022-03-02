@@ -50,7 +50,7 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "// SPDX-License-Identifier: MIT\r\npragma solidity >=0.4.22 <0.9.0;\r\n\r\n// It's a way for designer to say that\r\n// \"any child of this contract has to implement specified methods\"\r\n\r\nabstract contract Logger {\r\n    uint256 public testNum;\r\n\r\n    constructor() {\r\n        testNum = 1000;\r\n    }\r\n\r\n    function emitLog() public pure virtual returns (bytes32);\r\n\r\n    function test3() external pure returns (uint256) {\r\n        return 100;\r\n    }\r\n}\r\n",
-  "sourcePath": "D:\\An Dinh\\_TRAINING\\blockchain\\faucet\\contracts\\Logger.sol",
+  "sourcePath": "D:\\An_Dinh\\_training\\blockchain\\faucet\\contracts\\Logger.sol",
   "ast": {
     "absolutePath": "project:/contracts/Logger.sol",
     "exportedSymbols": {
@@ -646,8 +646,8 @@
     "version": "0.8.11+commit.d7f03943.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.4.4",
-  "updatedAt": "2022-02-12T07:01:27.844Z",
+  "schemaVersion": "3.4.5",
+  "updatedAt": "2022-02-25T08:09:26.960Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

@@ -11,6 +11,10 @@ export default function MarketPlace({ courses }) {
 	const [selectedCourse, setSelectedCourse] = useState(null);
 	const { canPurchaseCourse } = useWalletInfo();
 
+	const purchaseCourse = (order) => {
+		alert(JSON.stringify(order));
+	};
+
 	return (
 		<>
 			<div className="pt-4">
@@ -45,6 +49,7 @@ export default function MarketPlace({ courses }) {
 					onClose={() => {
 						setSelectedCourse(null);
 					}}
+					onSubmit={purchaseCourse}
 					course={selectedCourse}
 				/>
 			)}

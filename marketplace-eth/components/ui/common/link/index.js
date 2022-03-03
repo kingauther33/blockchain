@@ -14,7 +14,5 @@ export default function ActiveLink({ children, activeLinkClass, ...props }) {
 		} ${className}`;
 	}
 
-	console.log(className);
-
 	return <Link {...props}>{React.cloneElement(children, { className })}</Link>;
 }

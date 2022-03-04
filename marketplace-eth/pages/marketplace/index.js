@@ -28,14 +28,22 @@ export default function MarketPlace({ courses }) {
 			{ type: 'bytes32', value: orderHash }
 		);
 
-		const value = web3.utils.toWei(String(order.price));
+		const value = web3.utils.toWei(String(order.price), 'ether');
 
-		console.log(contract.methods.purchaseCourse);
+		console.log(hexCourseId);
+		console.log(orderHash);
+		console.log(proof);
+		console.log(value);
 
 		try {
 			const results = await contract.methods
-				.purchaseCourse(hexCourseId, proof)
+				.purchaseCourse(String(hexCourseId), String(proof))
 				.send({ from: account.data, value });
+			// const results = await contract.purchaseCourse(
+			// 	String(hexCourseId),
+			// 	String(proof),
+			// 	{ from: account.data, value: String(value) }
+			// );
 			console.log(results);
 		} catch {
 			console.error('Purchase course: Operation has failed.');

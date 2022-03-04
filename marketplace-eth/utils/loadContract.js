@@ -22,7 +22,7 @@ export const loadContract = async (name, web3) => {
 // 	const res = await fetch(`/contracts/${name}.json`);
 // 	const Artifact = await res.json();
 
-// 	const _contract = window.TruffleContract(Artifact);
+// 	const _contract = contract(Artifact);
 // 	_contract.setProvider(provider);
 
 // 	let deployedContract = null;

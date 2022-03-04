@@ -16,14 +16,14 @@ contract CourseMarketplace {
         State state; // 1
     }
 
-    // mapping of coursehash to courseData
+    // mapping of courseHash to Course data
     mapping(bytes32 => Course) private ownedCourses;
 
     // mapping of courseID to courseHash
     mapping(uint256 => bytes32) private ownedCourseHash;
 
     // number of all courses + id of the course
-    uint256 private totalOwnCourses;
+    uint256 private totalOwnedCourses;
 
     address payable private owner;
 
@@ -54,7 +54,8 @@ contract CourseMarketplace {
             revert CourseHasOwner();
         }
 
-        uint256 id = totalOwnCourses++;
+        uint256 id = totalOwnedCourses++;
+
         ownedCourseHash[id] = courseHash;
         ownedCourses[courseHash] = Course({
             id: id,
@@ -70,7 +71,7 @@ contract CourseMarketplace {
     }
 
     function getCourseCount() external view returns (uint256) {
-        return totalOwnCourses;
+        return totalOwnedCourses;
     }
 
     function getCourseHashAtIndex(uint256 index)

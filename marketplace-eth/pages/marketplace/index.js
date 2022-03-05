@@ -52,10 +52,7 @@ export default function MarketPlace({ courses }) {
 
 	return (
 		<>
-			<div className="pt-4">
-				<MarketHeader />
-			</div>
-
+			<MarketHeader />
 			<CourseList courses={courses}>
 				{(course) => (
 					<CourseCard

@@ -3,21 +3,39 @@ import { MarketHeader } from '@components/ui/marketplace';
 import { OwnedCourseCard } from '@components/ui/course';
 import { BaseLayout } from '@components/ui/layout';
 import { Button, Message } from '@components/ui/common';
+import { useOwnedCourses, useAccount } from '@components/hooks/web3';
+import { getAllCourse } from '@content/courses/fetcher';
+import { useRouter } from 'next/router';
 
-export default function OwnedCourses() {
+export default function OwnedCourses({ courses }) {
+	const router = useRouter();
+	const { account } = useAccount();
+	const { ownedCourses } = useOwnedCourses(courses, account.data);
+
 	return (
 		<>
-			<div className="pt-4">
-				<MarketHeader />
-			</div>
+			<MarketHeader />
 			<section className="grid grid-cols-1">
-				<OwnedCourseCard>
-					<Message type="danger">My Custom Message</Message>
-					<Button>Watch the course</Button>
-				</OwnedCourseCard>
+				{ownedCourses.data?.map((course) => (
+					<OwnedCourseCard key={course.id} course={course}>
+						<Message type="danger">My Custom Message</Message>
+						<Button onClick={() => router.push(`/courses/${course.slug}`)}>
+							Watch the course
+						</Button>
+					</OwnedCourseCard>
+				))}
 			</section>
 		</>
 	);
+}
+
+export function getStaticProps() {
+	const { data } = getAllCourse();
+	return {
+		props: {
+			courses: data,
+		},
+	};
 }
 
 OwnedCourses.Layout = BaseLayout;

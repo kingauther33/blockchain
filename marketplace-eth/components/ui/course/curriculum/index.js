@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 const lectures = [
 	'How to init App',
@@ -9,7 +10,7 @@ const lectures = [
 	'Safe operator',
 ];
 
-const CourseCurriculum = ({ locked }) => {
+const CourseCurriculum = ({ locked, courseState }) => {
 	const statusClasses =
 		'px-2 inline-flex text-xs leading-5 font-semibold rounded-full';
 
@@ -63,12 +64,30 @@ const CourseCurriculum = ({ locked }) => {
 												</span>
 											</td>
 											<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-												<a
-													href="#"
-													className="text-indigo-600 hover:text-indigo-900"
-												>
-													{locked ? 'Get Access' : 'Play'}
-												</a>
+												{locked ? (
+													<>
+														{courseState === 'deactivated' && (
+															<Link href="/marketplace">
+																<a className="text-indigo-600 hover:text-indigo-900">
+																	Get Access
+																</a>
+															</Link>
+														)}
+														{courseState === 'purchased' && (
+															<Link href="/faq">
+																<a className="text-yellow-600 hover:text-yellow-900">
+																	Waiting for activation...
+																</a>
+															</Link>
+														)}
+													</>
+												) : (
+													<Link href="/watch">
+														<a className="text-yellow-600 hover:text-yellow-900">
+															Watch
+														</a>
+													</Link>
+												)}
 											</td>
 										</tr>
 									))}

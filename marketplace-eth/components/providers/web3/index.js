@@ -82,6 +82,7 @@ export default function Web3Provider({ children }) {
 
 export const useWeb3 = () => {
 	return useContext(Web3Context);
+	// _web3Api
 };
 
 export function useHooks(cb) {

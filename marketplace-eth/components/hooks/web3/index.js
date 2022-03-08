@@ -1,9 +1,24 @@
 import { useHooks } from '@components/providers/web3';
 
+const _isEmpty = (data) => {
+	return (
+		data == null ||
+		data == '' ||
+		(Array.isArray(data) && data.length === 0) ||
+		(Object.keys(data).length === 0 && data.constructor === Object)
+	);
+};
+
 const enhanceHook = (swrRes) => {
+	const { data, error } = swrRes;
+	const hasInitialResponse = !!(data || error);
+	const isEmpty = hasInitialResponse && _isEmpty(data);
+	console.log(swrRes);
+
 	return {
 		...swrRes,
-		hasInitialResponse: swrRes.data || swrRes.error,
+		isEmpty,
+		hasInitialResponse,
 	};
 };
 

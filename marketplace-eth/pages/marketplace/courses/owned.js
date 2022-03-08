@@ -6,16 +6,38 @@ import { Button, Message } from '@components/ui/common';
 import { useOwnedCourses, useAccount } from '@components/hooks/web3';
 import { getAllCourse } from '@content/courses/fetcher';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 export default function OwnedCourses({ courses }) {
 	const router = useRouter();
 	const { account } = useAccount();
 	const { ownedCourses } = useOwnedCourses(courses, account.data);
 
+	console.log(account);
+
 	return (
 		<>
 			<MarketHeader />
 			<section className="grid grid-cols-1">
+				{ownedCourses.isEmpty && (
+					<div className="w-1/2">
+						<Message type="red">
+							<div>You don&lsquo;t own any courses</div>
+							<Link href="/marketplace">
+								<a className="font-normal hover:underline">
+									<i>Purchase Course</i>
+								</a>
+							</Link>
+						</Message>
+					</div>
+				)}
+				{account.isEmpty && (
+					<div className="w-1/2">
+						<Message type="red">
+							<div>Please connect to Metamask.</div>
+						</Message>
+					</div>
+				)}
 				{ownedCourses.data?.map((course) => (
 					<OwnedCourseCard key={course.id} course={course}>
 						<Message type="danger">My Custom Message</Message>

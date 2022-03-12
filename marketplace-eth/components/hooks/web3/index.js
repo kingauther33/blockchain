@@ -13,7 +13,6 @@ const enhanceHook = (swrRes) => {
 	const { data, error } = swrRes;
 	const hasInitialResponse = !!(data || error);
 	const isEmpty = hasInitialResponse && _isEmpty(data);
-	console.log(swrRes);
 
 	return {
 		...swrRes,

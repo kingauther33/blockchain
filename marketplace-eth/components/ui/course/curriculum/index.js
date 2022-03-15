@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { Loader } from '@components/ui/common';
 
 const lectures = [
 	'How to init App',
@@ -10,7 +11,7 @@ const lectures = [
 	'Safe operator',
 ];
 
-const CourseCurriculum = ({ locked, courseState }) => {
+const CourseCurriculum = ({ locked, courseState, isLoading }) => {
 	const statusClasses =
 		'px-2 inline-flex text-xs leading-5 font-semibold rounded-full';
 
@@ -64,7 +65,9 @@ const CourseCurriculum = ({ locked, courseState }) => {
 												</span>
 											</td>
 											<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-												{locked ? (
+												{isLoading ? (
+													<Loader />
+												) : locked ? (
 													<>
 														{courseState === 'deactivated' && (
 															<Link href="/marketplace">

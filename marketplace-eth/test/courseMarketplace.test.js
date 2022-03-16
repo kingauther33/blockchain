@@ -171,4 +171,49 @@ contract('CourseMarketplace', (accounts) => {
 			);
 		});
 	});
+
+	describe('Repurchase course', () => {
+		let courseHash2 = null;
+
+		before(async () => {
+			courseHash2 = await _contract.getCourseHashAtIndex(1);
+		});
+
+		it("should NOT repurchase when the course doesn't exist", async () => {
+			const notExistingHash =
+				'0xaad6953d5d589126a59281c86e12bda1ef9c202b581aae50f7547efada485de7';
+			await catchRevert(
+				_contract.repurchaseCourse(notExistingHash, { from: buyer })
+			);
+		});
+
+		it('should NOT repurchase with NOT course owner', async () => {
+			const notOwnerAddress = accounts[2];
+			await catchRevert(
+				_contract.repurchaseCourse(courseHash2, { from: notOwnerAddress })
+			);
+		});
+
+		it('should be able to repurchase with the originial owner', async () => {
+			await _contract.repurchaseCourse(courseHash2, { from: buyer, value });
+			const course = await _contract.getCourseByHash(courseHash2);
+			const expectedState = 0;
+			assert.equal(
+				course.state,
+				expectedState,
+				'The course is NOT in purchase state'
+			);
+			assert.equal(
+				course.price,
+				value,
+				`The course price is not equal to ${value}`
+			);
+		});
+
+		it('should NOT be able to repurchase purchased course', async () => {
+			await catchRevert(
+				_contract.repurchaseCourse(courseHash2, { from: buyer })
+			);
+		});
+	});
 });

@@ -69,6 +69,8 @@ export default function ManagedCourses() {
 		return null;
 	}
 
+	const deactivateCourse = () => {};
+
 	return (
 		<>
 			<MarketHeader />

@@ -32,5 +32,15 @@ export const handler = (web3, contract) => (courses, account) => {
 		}
 	);
 
-	return swrRes;
+	return {
+		...swrRes,
+		lookup:
+			(swrRes.data &&
+				swrRes.data?.reduce((a, c) => {
+					console.log(swrRes.data);
+					a[c.id] = c;
+					return a;
+				}, {})) ??
+			{},
+	};
 };

@@ -16,7 +16,6 @@ const BreadcrumbItem = ({ item, index }) => {
 };
 
 const BreadCrumb = ({ items, isAdmin }) => {
-	console.log(items);
 	return (
 		<nav aria-label="breadcrumb">
 			<ol className="flex leading-none text-indigo-600 divide-x divide-indigo-400">

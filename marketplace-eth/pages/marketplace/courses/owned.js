@@ -3,7 +3,11 @@ import { MarketHeader } from '@components/ui/marketplace';
 import { OwnedCourseCard } from '@components/ui/course';
 import { BaseLayout } from '@components/ui/layout';
 import { Button, Message } from '@components/ui/common';
-import { useOwnedCourses, useAccount } from '@components/hooks/web3';
+import {
+	useOwnedCourses,
+	useAccount,
+	useWalletInfo,
+} from '@components/hooks/web3';
 import { getAllCourse } from '@content/courses/fetcher';
 import { useRouter } from 'next/router';
 import Link from 'next/link';

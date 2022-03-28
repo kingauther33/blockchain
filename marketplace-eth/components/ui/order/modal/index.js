@@ -22,13 +22,13 @@ const createFormState = (
 		return _createFormState(true, 'Price is not valid');
 	}
 	if (isNewPurchase) {
-	if (confirmationEmail.length === 0 || email.length === 0) {
-		return _createFormState(true, '');
-	} else if (email !== confirmationEmail) {
-		return _createFormState(true, 'Email are not matching.');
+		if (confirmationEmail.length === 0 || email.length === 0) {
+			return _createFormState(true, '');
+		} else if (email !== confirmationEmail) {
+			return _createFormState(true, 'Email are not matching.');
+		}
 	}
-	}
-	 if (!hasAgreedTOS) {
+	if (!hasAgreedTOS) {
 		return _createFormState(
 			true,
 			'You need to agree with terms of service in order to submit the form.'
@@ -197,7 +197,7 @@ export default function OrderModal({
 					<Button
 						disabled={formState.isDisabled}
 						onClick={() => {
-							onSubmit(order);
+							onSubmit(order, course);
 						}}
 					>
 						Submit

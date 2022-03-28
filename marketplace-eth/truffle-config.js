@@ -22,8 +22,8 @@ module.exports = {
 			gas: 5500000, // Gas Limit, How much gas we are willing to spent
 			gasPrice: 20000000000, // how much we are willing to spent for unit of gas
 			confirmations: 2, // number of blocks to wait between deployment
-			timeoutBlocks: 1000, // number of blocks before deployment times out
-			networkCheckTimeout: 100000000, // slow internet
+			timeoutBlocks: 200, // number of blocks before deployment times out
+			networkCheckTimeout: 100000, // slow internet
 		},
 	},
 
@@ -34,3 +34,12 @@ module.exports = {
 		},
 	},
 };
+
+// > transaction hash:    0x23c69a312bd474d309732cb791c6aee4eb8797ad132fd9de8c11495ab894495f
+// > Blocks: 2            Seconds: 25
+// > contract address:    0x361C590F520050e7046f8285a4DD5d255f89b74E
+
+// Transaction Fee: 0.00000002 * 1366162
+
+// NEXT_PUBLIC_TARGET_CHAIN_ID=1337
+// NEXT_PUBLIC_NETWORK_ID=5777

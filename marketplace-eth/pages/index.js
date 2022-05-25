@@ -3,14 +3,15 @@ import { CourseCard, CourseList } from '@components/ui/course';
 import { GameCard, GameList } from '@components/ui/game';
 import { getAllCourse } from '@content/courses/fetcher';
 import { BaseLayout } from '@components/ui/layout';
-import {fetchSteamGames} from '@utils/fetchSteamGames'
+import { fetchSteamGames } from '@utils/fetchSteamGames';
+import { getAllGames } from '@content/steams/fetcher';
 
 export default function Home({ games }) {
 	return (
 		<>
 			<Hero />
 			<GameList games={games}>
-				{(game) => <GameCard key={game.id} game={game} />}
+				{(game) => <GameCard key={game.steam_appid} game={game} />}
 			</GameList>
 		</>
 	);
@@ -25,8 +26,25 @@ export default function Home({ games }) {
 // 	};
 // }
 
-export async function getStaticProps() {
-	const data = await fetchSteamGames();
+// export async function getStaticProps() {
+// 	const data = await fetchSteamGames();
+// 	// const data = await fetchDetailGame(1855390);
+// 	// Retrieving assets from OPENSEA API
+// 	if (!data) {
+// 		return {
+// 			notFound: true,
+// 		};
+// 	}
+
+// 	return {
+// 		props: {
+// 			games: data,
+// 		}, // will be passed to the page component as props
+// 	};
+// }
+
+export function getStaticProps() {
+	const { data } = getAllGames();
 	// const data = await fetchDetailGame(1855390);
 	// Retrieving assets from OPENSEA API
 	if (!data) {

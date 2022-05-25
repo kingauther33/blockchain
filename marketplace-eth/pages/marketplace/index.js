@@ -112,6 +112,8 @@ export default function GameMarketPlace({ games }) {
 		setIsNewPurchase(true);
 	};
 
+	console.log(selectedGame);
+
 	return (
 		<>
 			<GameMarketHeader />
@@ -269,7 +271,7 @@ export default function GameMarketPlace({ games }) {
 // }
 
 export function getStaticProps() {
-	const {data} = getAllGames();
+	const { data } = getAllGames();
 	// const data = await fetchDetailGame(1855390);
 	// Retrieving assets from OPENSEA API
 	if (!data) {

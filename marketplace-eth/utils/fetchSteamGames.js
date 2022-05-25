@@ -4,7 +4,7 @@ export const fetchSteamGames = async () => {
 	const response = await axios.get(
 		'https://api.steampowered.com/ISteamApps/GetAppList/v0002/?format=json'
 	);
-	const tenSteamGames = response.data.applist.apps.slice(51, 61);
+	const tenSteamGames = response.data.applist.apps.slice(61, 71);
 	console.log(tenSteamGames);
 	const gamesDetail = await mapAsync(tenSteamGames);
 

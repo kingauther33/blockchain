@@ -1,7 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.4.22 <0.9.0;
 
-contract CourseMarketplace {
+import "./ERC20.sol";
+
+// import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol";
+
+contract CourseMarketplace is ERC20 {
     enum State {
         Purchased,
         Activated,
@@ -18,6 +22,8 @@ contract CourseMarketplace {
 
     bool public isStopped = false;
 
+    uint256 private rateEthToMyr = 70000;
+
     // mapping of courseHash to Course data
     mapping(bytes32 => Course) private ownedCourses;
 
@@ -29,8 +35,10 @@ contract CourseMarketplace {
 
     address payable private owner;
 
-    constructor() {
+    constructor() ERC20("Myrmica Token", "MYR") {
         setContractOwner(msg.sender);
+        _mint(msg.sender, 10000000 * 10**18);
+        _mint(address(this), 100000000 * 10**18);
     }
 
     /// Course is not created!
@@ -66,6 +74,27 @@ contract CourseMarketplace {
     }
 
     receive() external payable {}
+
+    function mint(address to, uint256 amount) external onlyOwner {
+        _mint(to, amount);
+    }
+
+    function burn(uint256 amount) external {
+        _burn(msg.sender, amount);
+    }
+
+    function deposit() external payable onlyWhenNotStopped {
+        CourseMarketplace courseMarketPlace = CourseMarketplace(
+            payable(address(this))
+        );
+        uint256 valueInMyrmica = msg.value * rateEthToMyr;
+        courseMarketPlace.approve(msg.sender, valueInMyrmica);
+        transferFrom(payable(address(this)), msg.sender, valueInMyrmica);
+    }
+
+    function getRateEthToMyr() external view returns (uint256) {
+        return rateEthToMyr;
+    }
 
     function withdraw(uint256 amount) external onlyOwner {
         (bool success, ) = owner.call{value: amount}("");
